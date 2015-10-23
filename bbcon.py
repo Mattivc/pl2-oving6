@@ -6,6 +6,7 @@ class Bbcon(object):
     def __init__(self, time_step=0.2):
         ''':param time_step: float time in seconds between to wait after each time step
         '''
+        self.sensors = []           # All sensors
         self.behavs = []            # All behaviours
         self.active_behavs = []     # Active behaviours
         self.sensobs = []           # Sensory objects
