@@ -5,6 +5,7 @@ import wiringpi2 as wp
 
 
 class Motors():
+    '''Use forward(speed, dur), backward(speed, dur), left(speed, dur), right(speed, dur), stop().'''
     def __init__(self):
         self.setup()
 
@@ -33,6 +34,9 @@ class Motors():
     # is the time (in seconds) that the action will persist.
 
     def forward(self, speed=0.25, dur=None):
+        ''':param speed: float range [-1, 1]
+        :param dur: float time in seconds to drive or None
+        '''
         self.dc = int(self.max * speed)
         self.set_left_dir(0)
         self.set_right_dir(0)
@@ -41,15 +45,23 @@ class Motors():
         self.persist(dur)
 
     def backward(self, speed=0.25, dur=None):
+        '''Denne er sikkert bugga
+        :param speed: float range [-1, 1]
+        :param dur: float time in seconds to drive or None
+        '''
         self.set_left_dir(1)
         self.set_right_dir(1)
         self.set_left_speed(self.dc)
         self.set_right_speed(self.dc)
-        self.dc = int(self.max * speed)
+        self.dc = int(self.max * speed)  # Hvorfor setter han dc etter at set_(left|right)_speed(self.dc) brukes?
 
         self.persist(dur)
 
     def left(self, speed=0.25, dur=None):
+        '''Denne er sikkert bugga
+        :param speed: float range [-1, 1]
+        :param dur: float time in seconds to drive or None
+        '''
         s = int(self.max * speed)
         if self.dc == 0:
             self.set_left_dir(1)
@@ -62,6 +74,9 @@ class Motors():
         self.persist(dur)
 
     def right(self, speed=0.25, dur=None):
+        ''':param speed: float range [-1, 1]
+        :param dur: float time in seconds to drive or None
+        '''
         s = int(self.max * speed)
         if self.dc == 0:
             self.set_left_dir(0)
@@ -109,7 +124,9 @@ class Motors():
 
 
     def persist(self, duration):
-        if duration:
+        ''':param duration: float time to sleep in seconds before calling stop. range (0, inf)
+        '''
+        if duration and duration > 0:
             sleep(duration)
             self.stop()
 
