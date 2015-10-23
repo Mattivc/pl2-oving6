@@ -5,7 +5,8 @@ import wiringpi2 as wp
 
 
 class Motors():
-    '''Use forward(speed, dur), backward(speed, dur), left(speed, dur), right(speed, dur), stop().'''
+    '''Main methods are stop(), set_value(left_right_tuple, duration=None).
+    You can also use forward(speed, dur), backward(speed, dur), left(speed, dur), right(speed, dur).'''
     def __init__(self):
         self.setup()
 
@@ -96,6 +97,9 @@ class Motors():
 
     # Val should be a 2-element vector with values for the left and right motor speeds, both in the range [-1, 1].
     def set_value(self, val,dur=None):
+        ''':param val: tuple (left, right) where left,right is in [-1,1]
+        :param dur: float time in seconds to do action, or None. range (0, inf)
+        '''
         left_val = int(self.max * val[0])
         right_val = int(self.max * val[1])
 
