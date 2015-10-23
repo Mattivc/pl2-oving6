@@ -3,7 +3,7 @@ from PIL import Image
 import picamera
 import time
 import io
-import sensor.sensor as sensor
+import sensors.sensor as sensor
 
 class Camera(sensor.Sensor):
 

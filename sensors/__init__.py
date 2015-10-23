@@ -12,7 +12,7 @@ To use, say camera, write:
 
 # All files in this directory is now in the package sensor
 
-from sensor.sensor import *
-import sensor.camera as cam
-import sensor.reflectance_sensors as ir
-import sensor.ultrasonic as sonic
+from sensors.sensor import *
+import sensors.camera as cam
+import sensors.reflectance_sensors as ir
+import sensors.ultrasonic as sonic

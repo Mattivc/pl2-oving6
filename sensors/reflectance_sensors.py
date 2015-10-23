@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import sensor.sensor as sensor
+import sensors.sensor as sensor
 from time import sleep
 import datetime
 import RPi.GPIO as GPIO
