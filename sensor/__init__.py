@@ -6,8 +6,8 @@ Submodules are automatically imported as following:
 * ultrasonic 		: sonic
 
 To use, say camera, write:
-	import sensors
-	cam = sensors.cam.Camera()
+	import sensor
+	cam = sensor.cam.Camera()
 '''
 
 # All files in this directory is now in the package sensor
