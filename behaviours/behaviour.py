@@ -1,3 +1,6 @@
+__author__ = "krissrex"
+from abc import abstractmethod
+
 
 class Behaviour(object):
     """Base class for behaviours.
@@ -47,16 +50,19 @@ class Behaviour(object):
         else:
             self.consider_activation()
 
+    @abstractmethod
     def consider_deactivation(self):
         """Alters self.active_flag when it is True
         :return: None"""
         pass
 
+    @abstractmethod
     def consider_activation(self):
         """Alters self.active_flag when it is False
         :return: None"""
         pass
 
+    @abstractmethod
     def sense_and_act(self):
         """Main sensor method.
         Called when self.active_flag is true.
