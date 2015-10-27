@@ -1,8 +1,6 @@
 
-
-
 class Behaviour(object):
-    '''Base class for behaviours.
+    """Base class for behaviours.
     Behaviours can never directly communicate with each other.
     Main methods are update(), consider_deactivation(), consider_activation(), sense_and_act().
 
@@ -17,14 +15,14 @@ class Behaviour(object):
         * sense_and_act
         * consider_deactivation
         * consider_activation
-    '''
+    """
 
     PRIORITY = 20
 
     def __init__(self, bbcon, sensobs):
-        ''':param bbcon: Bbcon that uses this behaviour
+        """:param bbcon: Bbcon that uses this behaviour
         :param sensobs: list sensor objects that this behaviour uses
-        '''
+        """
         self.bbcon = bbcon                  # Bbcon that uses this object
         self.sensobs = sensobs              # List of sensor objects
         self.motor_reccomendations = None   # List of motor reccomendations, one per motob
@@ -50,21 +48,19 @@ class Behaviour(object):
             self.consider_activation()
 
     def consider_deactivation(self):
-        '''Alters self.active_flag when it is True
-        :return: None'''
+        """Alters self.active_flag when it is True
+        :return: None"""
         pass
 
     def consider_activation(self):
-        '''Alters self.active_flag when it is False
-        :return: None'''
+        """Alters self.active_flag when it is False
+        :return: None"""
         pass
 
     def sense_and_act(self):
-        '''Main sensor method.
+        """Main sensor method.
         Called when self.active_flag is true.
         Should update self.match_degree
         :return: None
-        '''
+        """
         pass
-        
-    
