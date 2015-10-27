@@ -5,8 +5,8 @@ import wiringpi2 as wp
 
 
 class Motors():
-    '''Main methods are stop(), set_value(left_right_tuple, duration=None).
-    You can also use forward(speed, dur), backward(speed, dur), left(speed, dur), right(speed, dur).'''
+    """Main methods are stop(), set_value(left_right_tuple, duration=None).
+    You can also use forward(speed, dur), backward(speed, dur), left(speed, dur), right(speed, dur)."""
     def __init__(self):
         self.setup()
 
@@ -35,9 +35,9 @@ class Motors():
     # is the time (in seconds) that the action will persist.
 
     def forward(self, speed=0.25, dur=None):
-        ''':param speed: float range [-1, 1]
+        """:param speed: float range [-1, 1]
         :param dur: float time in seconds to drive or None
-        '''
+        """
         self.dc = int(self.max * speed)
         self.set_left_dir(0)
         self.set_right_dir(0)
@@ -46,10 +46,10 @@ class Motors():
         self.persist(dur)
 
     def backward(self, speed=0.25, dur=None):
-        '''Denne er sikkert bugga
+        """Denne er sikkert bugga
         :param speed: float range [-1, 1]
         :param dur: float time in seconds to drive or None
-        '''
+        """
         self.set_left_dir(1)
         self.set_right_dir(1)
         self.set_left_speed(self.dc)
@@ -59,10 +59,10 @@ class Motors():
         self.persist(dur)
 
     def left(self, speed=0.25, dur=None):
-        '''Denne er sikkert bugga
+        """Denne er sikkert bugga
         :param speed: float range [-1, 1]
         :param dur: float time in seconds to drive or None
-        '''
+        """
         s = int(self.max * speed)
         if self.dc == 0:
             self.set_left_dir(1)
@@ -75,9 +75,9 @@ class Motors():
         self.persist(dur)
 
     def right(self, speed=0.25, dur=None):
-        ''':param speed: float range [-1, 1]
+        """:param speed: float range [-1, 1]
         :param dur: float time in seconds to drive or None
-        '''
+        """
         s = int(self.max * speed)
         if self.dc == 0:
             self.set_left_dir(0)
@@ -97,9 +97,9 @@ class Motors():
 
     # Val should be a 2-element vector with values for the left and right motor speeds, both in the range [-1, 1].
     def set_value(self, val,dur=None):
-        ''':param val: tuple (left, right) where left,right is in [-1,1]
+        """:param val: tuple (left, right) where left,right is in [-1,1]
         :param dur: float time in seconds to do action, or None. range (0, inf)
-        '''
+        """
         left_val = int(self.max * val[0])
         right_val = int(self.max * val[1])
 
@@ -128,8 +128,8 @@ class Motors():
 
 
     def persist(self, duration):
-        ''':param duration: float time to sleep in seconds before calling stop. range (0, inf)
-        '''
+        """:param duration: float time to sleep in seconds before calling stop. range (0, inf)
+        """
         if duration and duration > 0:
             sleep(duration)
             self.stop()

@@ -1,5 +1,9 @@
+
 # Custom plab 2 stuff
 live_feed.jpg
+.venv/
+.idea/
+*.iml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
