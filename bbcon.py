@@ -1,11 +1,12 @@
 
+
 import time
 
-class Bbcon(object):
 
+class Bbcon(object):
     def __init__(self, time_step=0.2):
-        ''':param time_step: float time in seconds between to wait after each time step
-        '''
+        """:param time_step: float time in seconds between to wait after each time step
+        """
         self.sensors = []           # All sensors
         self.behavs = []            # All behaviours
         self.active_behavs = []     # Active behaviours
@@ -24,9 +25,9 @@ class Bbcon(object):
             self.active_behavs.append(behaviour)
 
         def deactivate_behaviour(self, behaviour):
-            '''Remove behaviour.
+            """Remove behaviour.
             :return: boolean True if removed, False otherwise
-            '''
+            """
             try:
                 self.active_behavs.remove(behaviour)
             except ValueError:
@@ -57,7 +58,8 @@ class Bbcon(object):
             time.sleep(0.5)    #waits half a second
 
             # Reset sensobs
+
             for sensob in self.sensobs:     #resets each sensob in the list of sensobs
                 sensob.reset()
 
-        
+
