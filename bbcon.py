@@ -44,6 +44,8 @@ class Bbcon(object):
         for sensob in self.sensobs:
             sensob.update()
         # Update behaviours
+        for behav in self.active_behavs:
+            behav.update()
 
         # Invoke arbitrator
         motor_rec = self.arbit.choose_action()     #returns a tuple of (motor_recommendation, halt)
