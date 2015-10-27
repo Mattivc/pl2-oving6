@@ -3,8 +3,8 @@ from time import sleep
 
 mot = motors.Motors()
 
-duration = 0.2
-speed = 0.5
+duration = 0.25
+speed = 0.8
 
 while True:
 
