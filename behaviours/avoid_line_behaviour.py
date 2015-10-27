@@ -11,4 +11,3 @@ class AvoidLineBehaviour(behav.Behaviour):
         :return:
         """
         super().__init__(bbcon, list(ir_sensob))
-

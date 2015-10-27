@@ -1,4 +1,4 @@
-
+from abc import abstractmethod
 
 class Sensob(object):
     '''Base class for all sensory objects.
@@ -8,6 +8,6 @@ class Sensob(object):
     def __init__(self):
         pass
 
+    @abstractmethod
     def update(self):
         pass
-
