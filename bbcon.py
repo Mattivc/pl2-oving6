@@ -1,5 +1,5 @@
 
-
+import time
 
 class Bbcon(object):
 
@@ -54,7 +54,10 @@ class Bbcon(object):
                 i = i +1
 
             # Wait
+            time.sleep(0.5)    #waits half a second
 
             # Reset sensobs
+            for sensob in self.sensobs:     #resets each sensob in the list of sensobs
+                sensob.reset()
 
         
