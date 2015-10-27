@@ -6,11 +6,19 @@ import RPi.GPIO as GPIO
 
 
 class ReflectanceSensors(sensor.Sensor):
-    # The constructor allows students to decide if they want to auto_calibrate
-    # the robot, or if they want to hard code the min and max readings of the
-    # reflectance sensors
+    """The constructor allows students to decide if they want to auto_calibrate
+    the robot, or if they want to hard code the min and max readings of the
+    reflectance sensors
+    """
     
     def __init__(self, auto_calibrate=False, min_reading=100, max_reading=1000):
+        """
+        Set auto_calibrate=True to calibrate during this constructor.
+        If not calibrating, default values are (100, 1000) for (min, max).
+        :param auto_calibrate: bool
+        :param min_reading: int
+        :param max_reading: int
+        """
         super().__init__()
         self.setup()
         if (auto_calibrate):
@@ -27,7 +35,6 @@ class ReflectanceSensors(sensor.Sensor):
         print("Calibration results")
         print(self.max_val)
         print(self.min_val)
-
 
     def setup(self):
         # Initialize class variables
@@ -46,7 +53,6 @@ class ReflectanceSensors(sensor.Sensor):
 
         # Set the mode to GPIO.BOARD
         GPIO.setmode(GPIO.BOARD)
-
 
     def calibrate(self):
         print("calibrating...")
@@ -88,7 +94,6 @@ class ReflectanceSensors(sensor.Sensor):
         time = end_time - start_time
         return time
 
-
     def recharge_capacitors(self):
         # Make all sensors an output, and set all to HIGH
         GPIO.setup(self.sensor_inputs, GPIO.OUT)
@@ -96,11 +101,9 @@ class ReflectanceSensors(sensor.Sensor):
         # Wait 5 milliseconds to ensure that the capacitor is fully charged
         sleep(0.005)
 
-
     def reset(self):
         self.updated = False
         self.value = [-1.0, -1.0, -1.0, -1.0, -1.0, -1.0]
-
 
     def get_value(self):
         """Function should return a list of 6 reals between 0 and 1.0 indicating
@@ -109,7 +112,6 @@ class ReflectanceSensors(sensor.Sensor):
         :return: list[float] of 6 float between 0 and 1.0
         """
         return self.value
-
 
     def update(self):
         self.compute_value()
@@ -124,13 +126,16 @@ class ReflectanceSensors(sensor.Sensor):
             index = self.sensor_indices[pin]
             self.value[index] = 1 - self.normalize(index, time.microseconds)
 
-
-    # Uses the calibrated min and maxs for each sensor to return a normalized
-    # value for the @param sensor_time for the given @param index
     def normalize(self, index, sensor_time):
+        """Uses the calibrated min and max for each sensor to return a normalized
+        value for the sensor_time for the given index
+        :param index: int
+        :param sensor_time: int
+        :return: float
+        """
         normalized_value = float(sensor_time) / (self.max_val[index] - self.min_val[index])
-        if (normalized_value > 1.0):
+        if normalized_value > 1.0:
             return 1.0
-        elif (normalized_value < 0.0):
+        elif normalized_value < 0.0:
             return 0.0
         return normalized_value
