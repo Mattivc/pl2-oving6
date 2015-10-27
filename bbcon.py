@@ -11,36 +11,36 @@ class Bbcon(object):
         self.arbit = None           # Arbitrator
         self.time_step = time_step
 
-        def add_behaviour(self, behaviour):
-            self.behavs.append(behaviour)
+    def add_behaviour(self, behaviour):
+        self.behavs.append(behaviour)
 
-        def add_sensory_object(self, sensory_object):
-            self.sensobs.append(sensory_object)
+    def add_sensory_object(self, sensory_object):
+        self.sensobs.append(sensory_object)
 
-        def activate_behaviour(self, behaviour):
-            self.active_behavs.append(behaviour)
+    def activate_behaviour(self, behaviour):
+        self.active_behavs.append(behaviour)
 
-        def deactivate_behaviour(self, behaviour):
-            """Remove behaviour.
-            :return: boolean True if removed, False otherwise
-            """
-            try:
-                self.active_behavs.remove(behaviour)
-            except ValueError:
-                return False
-            else:
-                return True
+    def deactivate_behaviour(self, behaviour):
+        """Remove behaviour.
+        :return: boolean True if removed, False otherwise
+        """
+        try:
+            self.active_behavs.remove(behaviour)
+        except ValueError:
+            return False
+        else:
+            return True
 
-        def run_one_timestep(self):
-            # Update sensors
+    def run_one_timestep(self):
+        # Update sensors
 
-            # Update behaviours
+        # Update behaviours
 
-            # Invoke arbitrator
+        # Invoke arbitrator
 
-            # Update motobs
+        # Update motobs
 
-            # Wait
+        # Wait
 
-            # Reset sensobs
-            pass
+        # Reset sensobs
+        pass
