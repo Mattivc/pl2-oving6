@@ -15,6 +15,7 @@ class Motob(object):
 
     def operationalize(self):
         '''Converts the motor reccomendation into a set of
-         motor settings, which are then sent to the motors.
+         motor settings, which are then sent to the motors. This requires experimentation, since motor_rec is high level ex: (L, 30)
+         and the motor class requires a vector on the form [-1, 1]
          '''
         pass
