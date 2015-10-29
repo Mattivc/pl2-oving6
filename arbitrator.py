@@ -23,6 +23,7 @@ class Arbitrator(object):
         sum = 0
         winner = None
         for behav in self.bbcon.active_behavs:         #creates ranges of weights for stochastic choosing
+            print("Arbitrator: examining behaviour: "+str(behav))
             ranges.append((prev, behav.weight))
             i = i + 1
             prev = behav.weight
@@ -30,7 +31,9 @@ class Arbitrator(object):
         random_number = random.uniform(0, sum)     #generates a random number between 0 and the sum of the weights
         for entry in ranges:                       #checks which range the random number is in
             r = (entry[0], entry[1])
+            print("Arbitrator: looking at range "+str(r))
             if r[0] < random_number < r[1]:
+                print("Arbitrator: found winnter: "+str(ranges.index(entry)))
                 winner = ranges.index(entry)       #sets winner to the index of the winning range
         if winner:
             return (self.bbcon.active_behavs[winner].motor_recommendations, self.bbcon.active_behavs[winner].halt_request)    #returns a tuple containing motor recommendations and halt_request

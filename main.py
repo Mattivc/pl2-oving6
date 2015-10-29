@@ -15,7 +15,13 @@ if __name__ == '__main__':
     bb.add_behaviour(avl)
     bb.activate_behaviour(avl)
 
-    while bb.run_one_timestep():
-        print("Pi keeps on running.")
+    try:
+        while bb.run_one_timestep():
+            print("Pi keeps on running.")
+    except Exception as e:
+        # stop motor etc
+
+        if isinstance(e, KeyboardInterrupt):
+            raise e
 
     print("Pi halted.")
