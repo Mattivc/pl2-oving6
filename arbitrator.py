@@ -32,7 +32,5 @@ class Arbitrator(object):
             r = (entry[0], entry[1])
             if r[0] < random_number < r[1]:
                 winner = ranges.index(entry)       #sets winner to the index of the winning range
-        if winner:
-            return (self.bbcon.active_behavs[winner].motor_recommendations, self.bbcon.active_behavs[winner].halt_request)    #returns a tuple containing motor recommendations and halt_request
-        else:
+                return (self.bbcon.active_behavs[winner].motor_recommendations, self.bbcon.active_behavs[winner].halt_request) #returns a tuple containing motor recommendations and halt_request
             return [(0.0, 0.0)], False  # This just helps IntelliJ understant the return type.
