@@ -1,6 +1,6 @@
 from abc import abstractmethod
 
-class AbstractSensob(object):
+class Sensob(object):
     '''Base class for all sensory objects.
     The main methods are update and __init__(Sensor...)
     '''
@@ -11,5 +11,4 @@ class AbstractSensob(object):
     @abstractmethod
     def update(self):
         pass
-
 

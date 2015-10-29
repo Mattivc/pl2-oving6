@@ -1,3 +1,6 @@
+__author__ = "krissrex"
+from abc import abstractmethod
+
 
 class Behaviour(object):
     """Base class for behaviours.
@@ -25,7 +28,7 @@ class Behaviour(object):
         """
         self.bbcon = bbcon                  # Bbcon that uses this object
         self.sensobs = sensobs              # List of sensor objects
-        self.motor_reccomendations = None   # List of motor reccomendations, one per motob
+        self.motor_recommendations = None   # List of motor reccomendations, one per motob
         self.active_flag = True             # Sets if this behaviour is active
         self.halt_request = False           # Tracks if this behaviour wants the robot to stop execution
         self.match_degree = 0.5             # How valid is the reccomendation, based on current conditions. Range [0,1]
@@ -47,16 +50,19 @@ class Behaviour(object):
         else:
             self.consider_activation()
 
+    @abstractmethod
     def consider_deactivation(self):
         """Alters self.active_flag when it is True
         :return: None"""
         pass
 
+    @abstractmethod
     def consider_activation(self):
         """Alters self.active_flag when it is False
         :return: None"""
         pass
 
+    @abstractmethod
     def sense_and_act(self):
         """Main sensor method.
         Called when self.active_flag is true.

@@ -1,19 +1,30 @@
 
 
 import time
+from arbitrator import Arbitrator
+from motob import Motob
 
 
 class Bbcon(object):
     def __init__(self, time_step=0.2):
         """:param time_step: float time in seconds between to wait after each time step
         """
-        self.sensors = []           # All sensors
-        self.behavs = []            # All behaviours
-        self.active_behavs = []     # Active behaviours
-        self.sensobs = []           # Sensory objects
-        self.motobs = []            # Motor objects
-        self.arbit = None          # Arbitrator
+        self.sensors = []               # All sensors
+        self.behavs = []                # All behaviours
+        self.active_behavs = []         # Active behaviours
+        self.sensobs = []               # Sensory objects
+        self.motobs = []                # Motor objects
+        self.arbit = Arbitrator(self)   # Arbitrator
         self.time_step = time_step
+
+    def add_sensor(self, sensor):
+        self.sensors.append(sensor)
+
+    def remove_sensor(self, sensor):
+        try:
+            self.sensors.remove(sensor)
+        except ValueError:
+            pass
 
     def add_behaviour(self, behaviour):
         self.behavs.append(behaviour)
@@ -40,13 +51,28 @@ class Bbcon(object):
         self.arbit = arbitrator
 
     def run_one_timestep(self):
+        """
+        Returns if execution should continue.
+            False => Halt, stop program
+            True  => Keep running
+        :return: bool
+        """
         # Update sensors
+        for sensor in self.sensors:
+            sensor.update()
+        # Update sensobs
         for sensob in self.sensobs:
             sensob.update()
         # Update behaviours
+        for behav in self.active_behavs:
+            behav.update()
 
         # Invoke arbitrator
-        motor_rec = self.arbit.choose_action()     #returns a tuple of (motor_recommendation, halt)
+        motor_rec = self.arbit.choose_action()     # Returns a tuple(list(motor_recommendations), halt)
+        print("Arbitrator chose: "+str(motor_rec))
+
+        if motor_rec[1]:  # Check halt recommendation
+            return False  # Halt and exit program
 
 
         # Update motobs
@@ -58,9 +84,8 @@ class Bbcon(object):
         # Wait
         time.sleep(0.5)    #waits half a second
 
-        # Reset sensobs
+        # Reset sensors
+        for sensor in self.sensors:
+            sensor.reset()
 
-        for sensob in self.sensobs:     #resets each sensob in the list of sensobs
-            sensob.reset()
-
-
+        return True

@@ -15,6 +15,16 @@ class Motob(object):
 
     def operationalize(self):
         '''Converts the motor reccomendation into a set of
-         motor settings, which are then sent to the motors.
+         motor settings, which are then sent to the motors. This requires experimentation, since motor_rec is high level ex: (L, 30)
+         and the motor class requires a vector on the form [-1, 1]
          '''
         pass
+
+def make_recommendation(left_wheel, right_wheel):
+    """ Make a reccomendation for the motor motob.
+    Arguments are in range [-1, 1] where negative means backwards
+    :param left_wheel: float
+    :param right_wheel: float
+    :return: tuple[float, float]
+    """
+    return left_wheel, right_wheel

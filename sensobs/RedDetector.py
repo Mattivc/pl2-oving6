@@ -1,8 +1,8 @@
-from sensobs.AbstractSensob import AbstractSensob
+from sensobs.sensob import Sensob
 from PIL import Image, ImageOps
 import numpy as np
 
-class RedDetector(AbstractSensob):
+class RedDetector(Sensob):
 
     def __init__(self, cameraSensor):
         super().__init__()
