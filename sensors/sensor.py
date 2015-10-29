@@ -1,4 +1,4 @@
-
+from abc import abstractmethod
 
 class Sensor(object):
     '''Base class for sensors.
@@ -7,8 +7,14 @@ class Sensor(object):
     def __init__(self):
         pass
 
+    @abstractmethod
     def update(self):
         pass
 
+    @abstractmethod
     def get_value(self):
+        pass
+
+    @abstractmethod
+    def reset(self):
         pass
