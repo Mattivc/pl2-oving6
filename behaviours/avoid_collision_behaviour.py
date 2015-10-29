@@ -21,10 +21,8 @@ class AvoidCollisionBehaviour(behav.Behaviour):
         self.distance = UltraSensob.update()
         if self.distance <= 1:
             recommendation = [make_recommendation(0, 0)]
-            self.motor_recommendations = [recommendation]     #recommends the motors to stop (what to put in the first index of the tuple?)
+            self.motor_recommendations = [recommendation]     #recommends the motors to stop
             self.set_match_degree(1.0)                      #sets a high match degree
-        else:
-            self.set_match_degree(0.0)
 
     def consider_deactivation(self):      #ultrasonic sensor should always be active?
         pass
