@@ -11,11 +11,11 @@ class Arbitrator(object):
         
     def choose_action(self):
         '''Returns a tuple where the first element is a list of
-        motor reccomendations, where
+        motor recommendations, where
             len(list) == len(bbcon.motobs)
         and the second element is a boolean indicating if the robot
         should halt.
-        :return: tuple ([motor_reccomendations], halt)
+        :return: ([motor_recommendations], halt)
         '''
         ranges = []   #list of tuples with ranges for stochastic choosing
         i = 0
@@ -34,4 +34,5 @@ class Arbitrator(object):
                 winner = ranges.index(entry)       #sets winner to the index of the winning range
         if winner:
             return (self.bbcon.active_behavs[winner].motor_recommendations, self.bbcon.active_behavs[winner].halt_request)    #returns a tuple containing motor recommendations and halt_request
-
+        else:
+            return [(0.0, 0.0)], False  # This just helps IntelliJ understant the return type.
