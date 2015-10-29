@@ -58,6 +58,9 @@ class Bbcon(object):
         :return: bool
         """
         # Update sensors
+        for sensor in self.sensors:
+            sensor.update()
+        # Update sensobs
         for sensob in self.sensobs:
             sensob.update()
         # Update behaviours
@@ -66,6 +69,7 @@ class Bbcon(object):
 
         # Invoke arbitrator
         motor_rec = self.arbit.choose_action()     # Returns a tuple(list(motor_recommendations), halt)
+        print("Arbitrator chose: "+str(motor_rec))
 
         if motor_rec[0]:  # Check halt recommendation
             return False  # Halt and exit program
