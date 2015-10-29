@@ -23,7 +23,7 @@ class LineSensob(sensob.Sensob):
             raise Exception("Invalid argument ir_sensor: wrong type "+str(type(ir_sensor)))
 
         self.ir_sensor = ir_sensor
-        self.threshold = 0.35        # 35% of [min, max] is counted as a line. [0, 0.2] for black lines
+        self.threshold = 0.40        # 40% of [min, max] is counted as a line. [0, 0.2] for black lines
         self.black_lines = lines_are_black
         self.line_position = 0.0
         self.found_lines = False

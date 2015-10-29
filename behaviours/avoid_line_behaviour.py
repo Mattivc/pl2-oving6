@@ -44,7 +44,7 @@ class AvoidLineBehaviour(behav.Behaviour):
             left_sign = -1.0
 
         print("AvoidLineBehaviour: Strength: " + str(strength))
-        amount = max(0.05, 0.8*strength)    # Motor power capped to range [0.05, 0.8]
+        amount = max(0.1, 0.8*strength)    # Motor power capped to range [0.1, 0.8]
 
         # Recommendation is a list with tuples for each motob.
         recommendation = [make_recommendation(amount*left_sign, amount*right_sign)]
