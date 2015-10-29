@@ -43,7 +43,8 @@ class AvoidLineBehaviour(behav.Behaviour):
             strength = (position-0.5)/0.5       # Map to [0, 1]
             left_sign = -1.0
 
-        amount = max(0.05, 0.7*strength)    # Motor power capped to range [0.05, 0.7]
+        print("AvoidLineBehaviour: Strength: " + str(strength))
+        amount = max(0.05, 0.8*strength)    # Motor power capped to range [0.05, 0.8]
 
         # Recommendation is a list with tuples for each motob.
         recommendation = [make_recommendation(amount*left_sign, amount*right_sign)]
@@ -51,4 +52,4 @@ class AvoidLineBehaviour(behav.Behaviour):
         print(self)
 
     def __str__(self):
-        return "AvoidLineBehaviour "+str(self.motor_recommendations) + ", " +str(self.active_flag)
+        return "AvoidLineBehaviour "+str(self.motor_recommendations) + ", active: " +str(self.active_flag) + ", weight: " + str(self.weight)

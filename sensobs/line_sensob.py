@@ -25,7 +25,7 @@ class LineSensob(sensob.Sensob):
         self.ir_sensor = ir_sensor
         self.threshold = 0.35        # 35% of [min, max] is counted as a line. [0, 0.2] for black lines
         self.black_lines = lines_are_black
-        self.line_position = 0
+        self.line_position = 0.0
         self.found_lines = False
 
 
@@ -42,7 +42,7 @@ class LineSensob(sensob.Sensob):
             self.found_lines = True
             pos = position_str.find("1"*biggest_subsequence)    # index from 0 to 5
             pos += biggest_subsequence//2                       # Middle of sensors
-            self.line_position = pos / 6
+            self.line_position = float(pos) / 6.0
             print("LineSensob: Line pos: "+str(self.line_position))
         except ValueError:
             # Empty list; no line detected
@@ -66,7 +66,7 @@ class LineSensob(sensob.Sensob):
         """
         Returns a value in the range [0,1] where 0 is left, and 1 is right.
         If get_found_lines returns False, this data is invalid.
-        :return: bool
+        :return: float
         """
         return self.line_position
 
