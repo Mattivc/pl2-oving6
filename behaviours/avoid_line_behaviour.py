@@ -13,7 +13,7 @@ class AvoidLineBehaviour(behav.Behaviour):
         :return:
         """
         if not isinstance(line_sensob, LineSensob):
-            raise Exception("Invalid type for line_sensob: "+type(line_sensob))
+            raise Exception("Invalid type for line_sensob: "+str(type(line_sensob)))
         super().__init__(bbcon, [line_sensob])
 
         self.PRIORITY = 50
@@ -27,7 +27,7 @@ class AvoidLineBehaviour(behav.Behaviour):
     def sense_and_act(self):
         line_sensob = self.sensobs[0]
         if not isinstance(line_sensob, LineSensob):
-            raise Exception("Invalid type for line_sensob: "+type(line_sensob))
+            raise Exception("Invalid type for line_sensob: "+str(type(line_sensob)))
 
         found_lines = line_sensob.get_found_lines()
         position = line_sensob.get_line_position()
@@ -44,7 +44,9 @@ class AvoidLineBehaviour(behav.Behaviour):
             left_sign = -1.0
 
         amount = max(0.05, 0.7*strength)    # Motor power capped to range [0.05, 0.7]
-        recommendation = make_recommendation(amount*left_sign, amount*right_sign)
+
+        # Recommendation is a list with tuples for each motob.
+        recommendation = [make_recommendation(amount*left_sign, amount*right_sign)]
         self.motor_recommendations = [recommendation]
         print(self)
 

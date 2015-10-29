@@ -15,7 +15,7 @@ class UltraSensob(sensob.Sensob):
         '''
         super().__init__()
         if not isinstance(ultrasonic_sensor, Ultrasonic):
-            raise Exception("Invalid argument ultrasonic_sensor: wrong type "+type(ultrasonic_sensor))
+            raise Exception("Invalid argument ultrasonic_sensor: wrong type "+str(type(ultrasonic_sensor)))
 
         self.ultrasonic_sensor = ultrasonic_sensor
         self.distance = None

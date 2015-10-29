@@ -2,6 +2,7 @@
 
 import time
 from arbitrator import Arbitrator
+from motob import WheelMotob
 from motob import Motob
 
 
@@ -78,8 +79,8 @@ class Bbcon(object):
         # Update motobs
         i = 0
         for motob in self.motobs:     #updates each motob with it's respective motor recommendation
-            motob.update(motor_rec(0)[i])
-            i = i +1
+            motob.update(motor_rec[0][i])
+            i += 1
 
         # Wait
         time.sleep(0.5)    #waits half a second
