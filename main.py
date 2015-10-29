@@ -30,6 +30,7 @@ if __name__ == '__main__':
             print("Pi keeps on running.")
     except Exception as e:
         # stop motor etc
+        print("Stopping motor")
         motors.stop()
         if isinstance(e, KeyboardInterrupt):
             raise e

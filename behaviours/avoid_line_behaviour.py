@@ -49,6 +49,10 @@ class AvoidLineBehaviour(behav.Behaviour):
         print("AvoidLineBehaviour: Strength: " + str(strength))
         amount = 1.0*strength    # Motor power in range [0, 1.0]
 
+        if not found_lines:
+            # If arbitrator chooses this anyways, then don't drive.
+            amount = 0.0
+
         # Recommendation is a list with tuples for each motob.
         recommendation = [make_recommendation(amount*left_sign, amount*right_sign)]
         self.motor_recommendations = [recommendation]
