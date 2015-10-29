@@ -28,7 +28,7 @@ class Behaviour(object):
         """
         self.bbcon = bbcon                  # Bbcon that uses this object
         self.sensobs = sensobs              # List of sensor objects
-        self.motor_reccomendations = None   # List of motor reccomendations, one per motob
+        self.motor_recommendations = None   # List of motor reccomendations, one per motob
         self.active_flag = True             # Sets if this behaviour is active
         self.halt_request = False           # Tracks if this behaviour wants the robot to stop execution
         self.match_degree = 0.5             # How valid is the reccomendation, based on current conditions. Range [0,1]
