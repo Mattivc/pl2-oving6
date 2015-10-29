@@ -79,7 +79,7 @@ class Bbcon(object):
         # Update motobs
         i = 0
         for motob in self.motobs:     #updates each motob with it's respective motor recommendation
-            motob.update(motor_rec(0)[i])
+            motob.update(motor_rec[0][i])
             i = i +1
 
         # Wait
