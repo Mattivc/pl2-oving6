@@ -2,6 +2,7 @@
 
 import time
 from arbitrator import Arbitrator
+from motob import WheelMotob
 from motob import Motob
 
 
