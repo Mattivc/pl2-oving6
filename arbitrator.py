@@ -36,7 +36,6 @@ class Arbitrator(object):
                 print("Arbitrator: found winner: "+str(ranges.index(entry)))
                 winner = ranges.index(entry)       #sets winner to the index of the winning range
                 break
-
         if winner is not None:
             return (self.bbcon.active_behavs[winner].motor_recommendations, self.bbcon.active_behavs[winner].halt_request)    #returns a tuple containing motor recommendations and halt_request
         else:

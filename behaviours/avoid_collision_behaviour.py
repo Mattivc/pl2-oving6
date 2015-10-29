@@ -1,6 +1,7 @@
 __author__ = 'Marius'
 import behaviours.behaviour as behav
 from sensobs.ultra_sensob import UltraSensob
+from motob import make_recommendation
 
 class AvoidCollisionBehaviour(behav.Behaviour):
     '''Behaviour to stop the robot to avoid collisions'''
@@ -11,6 +12,7 @@ class AvoidCollisionBehaviour(behav.Behaviour):
             raise Exception("Invalid type for line_sensob: "+str(type(ultra_sensob)))
 
         super().__init__(bbcon, list(ultra_sensob))
+        self.PRIORITY = 100
 
 
 
@@ -18,10 +20,11 @@ class AvoidCollisionBehaviour(behav.Behaviour):
     def sense_and_act(self):
         self.distance = UltraSensob.update()
         if self.distance <= 1:
-            self.motor_recommendations.append(('L', 0))     #recommends the motors to stop (what to put in the first index of the tuple?)
-            self.set_match_degree(0.9)                      #sets a high match degree
+            recommendation = [make_recommendation(0, 0)]
+            self.motor_recommendations = [recommendation]     #recommends the motors to stop (what to put in the first index of the tuple?)
+            self.set_match_degree(1.0)                      #sets a high match degree
         else:
-            self.set_match_degree(0.5)
+            self.set_match_degree(0.0)
 
     def consider_deactivation(self):      #ultrasonic sensor should always be active?
         pass
