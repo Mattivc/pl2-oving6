@@ -20,7 +20,7 @@ class LineSensob(sensob.Sensob):
         """
         super().__init__()
         if not isinstance(ir_sensor, ReflectanceSensors):
-            raise Exception("Invalid argument ir_sensor: wrong type "+type(ir_sensor))
+            raise Exception("Invalid argument ir_sensor: wrong type "+str(type(ir_sensor)))
 
         self.ir_sensor = ir_sensor
         self.threshold = 0.35        # 35% of [min, max] is counted as a line. [0, 0.2] for black lines

@@ -8,7 +8,7 @@ class AvoidCollisionBehaviour(behav.Behaviour):
     def __init__(self, bbcon, ultra_sensob):
 
         if not isinstance(ultra_sensob, UltraSensob):
-            raise Exception("Invalid type for line_sensob: "+type(ultra_sensob))
+            raise Exception("Invalid type for line_sensob: "+str(type(ultra_sensob)))
 
         super().__init__(bbcon, list(ultra_sensob))
 
