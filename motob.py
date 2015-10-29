@@ -45,9 +45,14 @@ class WheelMotob(Motob):
         if not isinstance(motors, Motors):
             raise Exception("Invalid type motors: "+type(motors))
         self.motors = [motors]
+        self.duration = duration
 
     def operationalize(self):
         recommendation = self.value[0]
         motors = self.motors[0]
 
-        motors.set_value(recommendation[0], recommendation[1], self.duration)
+        if not isinstance(recommendation, tuple):
+            print("Recommendation is not a tuple: "+str(recommendation) + type(recommendation))
+            raise Exception("Recommendation is not tuple")
+
+        motors.set_value(recommendation, self.duration)
