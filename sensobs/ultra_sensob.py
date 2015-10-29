@@ -33,6 +33,9 @@ class UltraSensob(sensob.Sensob):
         else:
             raise Exception("Distance is None")
 
+    def reset(self):
+        self.ultrasonic_sensor.reset()
+
 
 
 
