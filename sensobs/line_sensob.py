@@ -38,6 +38,8 @@ class LineSensob(sensob.Sensob):
         position_str = "".join("1" if pos else "0" for pos in line_positions)
         print("LineSensob: Line pos array: "+position_str)
         try:
+            if position_str == "000000":
+                raise ValueError("No line")
             biggest_subsequence = max(map(len, position_str.split("0")))    # throws if empty list
             self.found_lines = True
             pos = position_str.find("1"*biggest_subsequence)    # index from 0 to 5
@@ -46,6 +48,7 @@ class LineSensob(sensob.Sensob):
             print("LineSensob: Line pos: "+str(self.line_position))
         except ValueError:
             # Empty list; no line detected
+            print("LineSensob: no line detected")
             self.found_lines = False
 
     def _is_black(self, value):
