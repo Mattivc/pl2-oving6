@@ -35,6 +35,7 @@ class LineSensob(sensob.Sensob):
 
         # Find longest subsequence of sensors that detected a line.
         position_str = "".join("1" if pos else "0" for pos in line_positions)
+        print("LineSensob: "+position_str)
         try:
             biggest_subsequence = max(map(len, position_str.split("0")))    # throws if empty list
             self.found_lines = True
