@@ -4,6 +4,9 @@ from sensobs.line_sensob import LineSensob
 from sensors import *
 from robot.motors import Motors
 from motob import WheelMotob
+from behaviours.avoid_collision_behaviour import AvoidCollisionBehaviour
+from sensobs.ultra_sensob import UltraSensob
+import sensors
 
 if __name__ == '__main__':
     bb = Bbcon()
@@ -18,6 +21,17 @@ if __name__ == '__main__':
     bb.add_behaviour(avl)
     bb.activate_behaviour(avl)
 
+    # Collision avoidance
+    '''
+    ultra_sensor = sensors.ultrasonic.Ultrasonic()
+    ultra_sensob = UltraSensob(ultra_sensor)
+    avc = AvoidCollisionBehaviour(bb, ultra_sensob)
+
+    bb.add_sensor(ultra_sensor)
+    bb.add_sensory_object(ultra_sensob)
+    bb.add_behaviour(avc)
+    bb.activate_behaviour(avc)
+    '''
     # Motor
 
     motors = Motors()
