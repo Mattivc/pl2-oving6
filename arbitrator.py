@@ -23,7 +23,7 @@ class Arbitrator(object):
         sum = 0
         winner = None
         for behav in self.bbcon.active_behavs:         #creates ranges of weights for stochastic choosing
-            ranges[i] = (prev, behav.weight)
+            ranges.append((prev, behav.weight))
             i = i + 1
             prev = behav.weight
             sum = sum + behav.weight
