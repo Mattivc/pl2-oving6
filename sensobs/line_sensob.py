@@ -23,15 +23,15 @@ class LineSensob(sensob.Sensob):
             raise Exception("Invalid argument ir_sensor: wrong type "+type(ir_sensor))
 
         self.ir_sensor = ir_sensor
-        self.threshold = 0.2        # 20% of [min, max] is counted as a line. [0, 0.2] for black lines
+        self.threshold = 0.35        # 35% of [min, max] is counted as a line. [0, 0.2] for black lines
         self.black_lines = lines_are_black
         self.line_position = 0
         self.found_lines = False
 
 
     def update(self):
-        sensor_float_list = self.ir_sensor.get_value()              # 6 floats
-        line_positions = map(self._is_black, sensor_float_list)     # 6 bool
+        sensor_float_list = self.ir_sensor.get_value()                  # 6 floats
+        line_positions = list(map(self._is_black, sensor_float_list))   # 6 bool
         print("LineSensob:"+str(sensor_float_list)+"\t"+str(line_positions))
 
         # Find longest subsequence of sensors that detected a line.
@@ -43,6 +43,7 @@ class LineSensob(sensob.Sensob):
             pos = position_str.find("1"*biggest_subsequence)    # index from 0 to 5
             pos += biggest_subsequence//2                       # Middle of sensors
             self.line_position = pos / 6
+            print("LineSensob: Line pos: "+str(self.line_position))
         except ValueError:
             # Empty list; no line detected
             self.found_lines = False
