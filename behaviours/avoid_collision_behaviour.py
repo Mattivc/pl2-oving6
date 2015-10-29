@@ -12,6 +12,7 @@ class AvoidCollisionBehaviour(behav.Behaviour):
             raise Exception("Invalid type for line_sensob: "+str(type(ultra_sensob)))
 
         super().__init__(bbcon, list(ultra_sensob))
+        self.PRIORITY = 100
 
 
 
