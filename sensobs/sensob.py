@@ -11,3 +11,4 @@ class Sensob(object):
     @abstractmethod
     def update(self):
         pass
+

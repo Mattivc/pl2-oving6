@@ -70,3 +70,6 @@ class Behaviour(object):
         :return: None
         """
         pass
+
+    def __str__(self):
+        return str(type) + ", [weight: " + str(self.weight) + ", " + str(self.motor_recommendations) + "]"
