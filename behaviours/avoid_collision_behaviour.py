@@ -18,7 +18,7 @@ class AvoidCollisionBehaviour(behav.Behaviour):
     def sense_and_act(self):
         self.distance = UltraSensob.update()
         if self.distance <= 1:
-            self.motor_reccomendations.append(('L', 0))     #reccomends the motors to stop (what to put in the first index of the tuple?)
+            self.motor_recommendations.append(('L', 0))     #recommends the motors to stop (what to put in the first index of the tuple?)
             self.set_match_degree(0.9)                      #sets a high match degree
         else:
             self.set_match_degree(0.5)
