@@ -37,10 +37,10 @@ class AvoidLineBehaviour(behav.Behaviour):
         left_sign, right_sign = 1.0, 1.0        # Negate in if-test to reverse motor
 
         if position < 0.5:  # Line is left, drive right
-            strength = position/0.5             # Map to [0, 1]
+            strength = max(0.3, position/0.5)           # Map to [0.3, 1]
             right_sign = -1.0
         else:               # Line is right, drive left
-            strength = (position-0.5)/0.5       # Map to [0, 1]
+            strength = max(0.3, 0.5-(position-0.5)/0.5)       # Map to [0.3, 1]
             left_sign = -1.0
 
         print("AvoidLineBehaviour: Strength: " + str(strength))
