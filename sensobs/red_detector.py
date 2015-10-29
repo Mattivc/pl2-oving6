@@ -1,5 +1,5 @@
 from sensobs.sensob import Sensob
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps, ImageStat
 import numpy as np
 
 class RedDetector(Sensob):
@@ -8,6 +8,7 @@ class RedDetector(Sensob):
         super().__init__()
         self.camera = cameraSensor
         self.value = 0.0
+        self.confidence = 0.0
 
     def _get_image(self):
         return self.camera.update()
@@ -19,6 +20,8 @@ class RedDetector(Sensob):
         """
         _, c, _ = image.split()
         im = ImageOps.invert(c)
+        self.confidence = ImageStat.Stat(im)._getmean()[0] / 255
+        print(self.confidence)
         im = im.point(lambda x: x**2 * (512/(255**2)) - 180)
 
         return im
@@ -42,3 +45,10 @@ class RedDetector(Sensob):
 
     def get_red_position(self):
         return self.value
+
+    def get_confidence(self):
+        self.confidence
+
+
+red = RedDetector(None)
+red.update()
