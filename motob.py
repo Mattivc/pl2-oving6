@@ -55,4 +55,5 @@ class WheelMotob(Motob):
             print("Recommendation is not a tuple: "+str(recommendation) + str(type(recommendation)))
             raise Exception("Recommendation is not tuple")
 
+        print("WheelMotob: setting value " + str(recommendation) + " on motors.")
         motors.set_value(recommendation, self.duration)

@@ -39,4 +39,4 @@ class Arbitrator(object):
         if winner is not None:
             return (self.bbcon.active_behavs[winner].motor_recommendations, self.bbcon.active_behavs[winner].halt_request)    #returns a tuple containing motor recommendations and halt_request
         else:
-            return [(0.0, 0.0)], False  # This just helps IntelliJ understant the return type.
+            return [[(0.0, 0.0)]], False  # This just helps IntelliJ understant the return type.

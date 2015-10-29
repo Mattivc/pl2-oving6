@@ -96,7 +96,7 @@ class Motors():
         self.set_right_speed(self.dc)
 
     # Val should be a 2-element vector with values for the left and right motor speeds, both in the range [-1, 1].
-    def set_value(self, val,dur=None):
+    def set_value(self, val, dur=None):
         """:param val: tuple (left, right) where left,right is in [-1,1]
         :param dur: float time in seconds to do action, or None. range (0, inf)
         """

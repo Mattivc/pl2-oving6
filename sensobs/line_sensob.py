@@ -23,9 +23,9 @@ class LineSensob(sensob.Sensob):
             raise Exception("Invalid argument ir_sensor: wrong type "+str(type(ir_sensor)))
 
         self.ir_sensor = ir_sensor
-        self.threshold = 0.35        # 35% of [min, max] is counted as a line. [0, 0.2] for black lines
+        self.threshold = 0.40        # 40% of [min, max] is counted as a line. [0, 0.2] for black lines
         self.black_lines = lines_are_black
-        self.line_position = 0
+        self.line_position = 0.0
         self.found_lines = False
 
 
@@ -38,14 +38,17 @@ class LineSensob(sensob.Sensob):
         position_str = "".join("1" if pos else "0" for pos in line_positions)
         print("LineSensob: Line pos array: "+position_str)
         try:
+            if position_str == "000000":
+                raise ValueError("No line")
             biggest_subsequence = max(map(len, position_str.split("0")))    # throws if empty list
             self.found_lines = True
             pos = position_str.find("1"*biggest_subsequence)    # index from 0 to 5
             pos += biggest_subsequence//2                       # Middle of sensors
-            self.line_position = pos / 6
+            self.line_position = float(pos) / 6.0
             print("LineSensob: Line pos: "+str(self.line_position))
         except ValueError:
             # Empty list; no line detected
+            print("LineSensob: no line detected")
             self.found_lines = False
 
     def _is_black(self, value):
@@ -66,7 +69,7 @@ class LineSensob(sensob.Sensob):
         """
         Returns a value in the range [0,1] where 0 is left, and 1 is right.
         If get_found_lines returns False, this data is invalid.
-        :return: bool
+        :return: float
         """
         return self.line_position
 

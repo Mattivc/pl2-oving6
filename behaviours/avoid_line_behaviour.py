@@ -37,13 +37,22 @@ class AvoidLineBehaviour(behav.Behaviour):
         left_sign, right_sign = 1.0, 1.0        # Negate in if-test to reverse motor
 
         if position < 0.5:  # Line is left, drive right
-            strength = position/0.5             # Map to [0, 1]
+            strength = max(0.3, position/0.5)           # Map to [0.3, 1]
             right_sign = -1.0
         else:               # Line is right, drive left
-            strength = (position-0.5)/0.5       # Map to [0, 1]
+            strength = max(0.3, 0.5-(position-0.5)/0.5)       # Map to [0.3, 1]
             left_sign = -1.0
 
-        amount = max(0.05, 0.7*strength)    # Motor power capped to range [0.05, 0.7]
+        # Meh, override strength
+        strength = 1.0
+
+        print("AvoidLineBehaviour: Strength: " + str(strength))
+        amount = 1.0*strength    # Motor power in range [0, 1.0]
+
+        if not found_lines:
+            print("AvoidLineBehaviour: Did not find any lines")
+            # If arbitrator chooses this anyways, then don't drive.
+            amount = 0.0
 
         # Recommendation is a list with tuples for each motob.
         recommendation = [make_recommendation(amount*left_sign, amount*right_sign)]
@@ -51,4 +60,4 @@ class AvoidLineBehaviour(behav.Behaviour):
         print(self)
 
     def __str__(self):
-        return "AvoidLineBehaviour "+str(self.motor_recommendations) + ", " +str(self.active_flag)
+        return "AvoidLineBehaviour "+str(self.motor_recommendations) + ", active: " +str(self.active_flag) + ", weight: " + str(self.weight)
