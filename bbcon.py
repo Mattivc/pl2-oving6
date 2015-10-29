@@ -64,5 +64,3 @@ class Bbcon(object):
 
         for sensob in self.sensobs:     #resets each sensob in the list of sensobs
             sensob.reset()
-
-
