@@ -13,6 +13,7 @@ if __name__ == '__main__':
     bb.add_sensor(ir_sensor)
     bb.add_sensory_object(line_sensob)
     bb.add_behaviour(avl)
+    bb.activate_behaviour(avl)
 
     while bb.run_one_timestep():
         print("Pi keeps on running.")
