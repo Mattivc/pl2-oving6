@@ -46,3 +46,7 @@ class AvoidLineBehaviour(behav.Behaviour):
         amount = max(0.05, 0.7*strength)    # Motor power capped to range [0.05, 0.7]
         recommendation = make_recommendation(amount*left_sign, amount*right_sign)
         self.motor_recommendations = [recommendation]
+        print(self)
+
+    def __str__(self):
+        return "AvoidLineBehaviour "+str(self.motor_recommendations) + ", " +str(self.active_flag)

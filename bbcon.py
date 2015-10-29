@@ -71,7 +71,7 @@ class Bbcon(object):
         motor_rec = self.arbit.choose_action()     # Returns a tuple(list(motor_recommendations), halt)
         print("Arbitrator chose: "+str(motor_rec))
 
-        if motor_rec[0]:  # Check halt recommendation
+        if motor_rec[1]:  # Check halt recommendation
             return False  # Halt and exit program
 
 
@@ -84,8 +84,8 @@ class Bbcon(object):
         # Wait
         time.sleep(0.5)    #waits half a second
 
-        # Reset sensobs
-        for sensob in self.sensobs:     #resets each sensob in the list of sensobs
-            sensob.reset()
+        # Reset sensors
+        for sensor in self.sensors:
+            sensor.reset()
 
         return True
