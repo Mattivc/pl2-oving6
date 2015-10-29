@@ -50,6 +50,7 @@ class AvoidLineBehaviour(behav.Behaviour):
         amount = 1.0*strength    # Motor power in range [0, 1.0]
 
         if not found_lines:
+            print("AvoidLineBehaviour: Did not find any lines")
             # If arbitrator chooses this anyways, then don't drive.
             amount = 0.0
 
