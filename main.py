@@ -29,10 +29,11 @@ if __name__ == '__main__':
         while bb.run_one_timestep():
             print("Pi keeps on running.")
     except Exception as e:
-        print("Exception occurred! "+str(e))
         # stop motor etc
         motors.stop()
         if isinstance(e, KeyboardInterrupt):
             raise e
+        # found no good way to print stacktrace, raising instead. -kriss
+        raise e
 
     print("Pi halted.")
