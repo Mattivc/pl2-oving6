@@ -36,7 +36,7 @@ if __name__ == '__main__':
     camera_sensor = cam.Camera(img_rot=180)
     follow_red_sensob = RedDetector(camera_sensor)
     follow_red_behaviour = FollowRedBehaviour(bb, follow_red_sensob)
-    bb.add_sensor(camera_sensor)
+    bb.sensors.insert(0, camera_sensor)
     bb.add_sensory_object(follow_red_sensob)
     bb.add_behaviour(follow_red_behaviour)
     bb.activate_behaviour(follow_red_behaviour)

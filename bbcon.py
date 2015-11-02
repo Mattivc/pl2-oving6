@@ -2,6 +2,7 @@
 
 import time
 from arbitrator import Arbitrator
+from sensors.camera import Camera
 from motob import WheelMotob
 from motob import Motob
 import threading
@@ -64,9 +65,12 @@ class Bbcon(object):
 
         # Update sensors
         for sensor in self.sensors:
-            thread = threading.Thread(target=sensor.update)
-            forks.append(thread)
-            thread.start()
+            if isinstance(sensor, Camera):
+                thread = threading.Thread(target=sensor.update)
+                forks.append(thread)
+                thread.start()
+            else:
+                sensor.update()
 
         for fork in forks:
             fork.join()
