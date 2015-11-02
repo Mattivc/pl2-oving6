@@ -94,12 +94,14 @@ class Bbcon(object):
 
 
         # Update motobs
+        print(self.motobs)
         i = 0
         for motob in self.motobs:     # Updates each motob with it's respective motor recommendation
             print("Bbcon: Updating motob " + str(i))
             print(motor_rec)
             print(motor_rec[0])
             print(motor_rec[0][i])
+            print("Bbcon: Updating motob " + str(i)+ ", motor_rec: "+motor_rec[0])
             motob.update(motor_rec[0][i])
             i += 1
 
