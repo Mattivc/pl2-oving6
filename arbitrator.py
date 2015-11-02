@@ -33,7 +33,7 @@ class Arbitrator(object):
             r = (entry[0], entry[1])
             print("Arbitrator: looking at range "+str(r))
             if r[0] < random_number < r[1]:
-                print("\033[92mArbitrator: found winner: "+str(ranges.index(entry)) + "\033[0m")
+                print("\033[94mArbitrator: found winner: "+str(ranges.index(entry)) + "\033[0m")
                 winner = ranges.index(entry)       #sets winner to the index of the winning range
                 break
         if winner is not None:
