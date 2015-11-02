@@ -15,6 +15,7 @@ class Camera(sensor.Sensor):
         self.img_width = img_width
         self.img_height = img_height
         self.img_rot = img_rot
+        self.active = True
 
     def get_value(self):
         return self.value
@@ -34,6 +35,10 @@ class Camera(sensor.Sensor):
         #self.value = Image.open('image.png').convert('RGB')
 
         # Nei takk, keith.
+        if not self.active:
+            return
+        self.active = not self.active
+
         stream = io.BytesIO()
         with picamera.PiCamera() as camera:
                 camera.resolution = (self.img_width, self.img_height)
