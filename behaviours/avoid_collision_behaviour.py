@@ -19,12 +19,14 @@ class AvoidCollisionBehaviour(behav.Behaviour):
         if not isinstance(ultra_sensob, UltraSensob):
             raise Exception("Invalid type for line_sensob: "+str(type(ultra_sensob)))
 
-        distance = ultra_sensob.get_value()
+        distance = ultra_sensob.get_value()  # distance cm
 
-        if distance <= 1:
+        if distance <= 5:
             recommendation = [make_recommendation(0, 0)]
             self.motor_recommendations = [recommendation]     #recommends the motors to stop
-            self.set_match_degree(1.0)                      #sets a high match degree
+            self.set_match_degree(1.0)                        #sets a high match degree
+        else:
+            self.set_match_degree(0.0)
         print(self)
 
     def consider_deactivation(self):
