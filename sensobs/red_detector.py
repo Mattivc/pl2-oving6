@@ -20,7 +20,7 @@ class RedDetector(Sensob):
         """
         _, c, _ = image.split()
         im = ImageOps.invert(c)
-        self.confidence = ImageStat.Stat(im)._getmean()[0] / 255
+        self.confidence = ImageStat.Stat(im)._getmean()[0] / 255.0
         print(self.confidence)
         im = im.point(lambda x: x**2 * (512/(255**2)) - 180)
 
@@ -47,7 +47,7 @@ class RedDetector(Sensob):
         return self.value
 
     def get_confidence(self):
-        self.confidence
+        return self.confidence
 
 
 red = RedDetector(None)

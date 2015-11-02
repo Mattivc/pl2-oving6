@@ -11,24 +11,24 @@ class AvoidCollisionBehaviour(behav.Behaviour):
         if not isinstance(ultra_sensob, UltraSensob):
             raise Exception("Invalid type for line_sensob: "+str(type(ultra_sensob)))
 
-        super().__init__(bbcon, list(ultra_sensob))
+        super().__init__(bbcon, [ultra_sensob])
         self.PRIORITY = 100
 
-
-
-
     def sense_and_act(self):
-        self.distance = UltraSensob.update()
-        if self.distance <= 1:
+        ultra_sensob = self.sensobs[0]
+        if not isinstance(ultra_sensob, UltraSensob):
+            raise Exception("Invalid type for line_sensob: "+str(type(ultra_sensob)))
+
+        distance = ultra_sensob.get_value()
+
+        if distance <= 1:
             recommendation = [make_recommendation(0, 0)]
-            self.motor_recommendations = [recommendation]     #recommends the motors to stop (what to put in the first index of the tuple?)
+            self.motor_recommendations = [recommendation]     #recommends the motors to stop
             self.set_match_degree(1.0)                      #sets a high match degree
-        else:
-            self.set_match_degree(0.0)
 
-    def consider_deactivation(self):      #ultrasonic sensor should always be active?
-        pass
+    def consider_deactivation(self):
+        # should ultrasonic sensor always be active?
+        self.active_flag = True
 
-    def consider_activation(self):     #activates the sensor if it is not active
-        if not self.active_flag:
-            self.active_flag = True
+    def consider_activation(self):
+        self.active_flag = True

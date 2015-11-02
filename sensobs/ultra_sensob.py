@@ -22,10 +22,7 @@ class UltraSensob(sensob.Sensob):
 
     def update(self):
         self.distance = self.ultrasonic_sensor.update()
-        if self.distance:
-            return self.distance
-        else:
-            raise Exception("Distance is None")
+        return self.get_value()
 
     def get_value(self):
         if self.distance:
