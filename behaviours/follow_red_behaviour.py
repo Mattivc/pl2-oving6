@@ -27,7 +27,8 @@ class FollowRedBehaviour(Behaviour):
 
         red_position = red_detector.get_red_position()
 
-        recommendation = [make_recommendation(red_position, -red_position)]
+        print("Red position: "+str(red_position))
+        recommendation = [make_recommendation(red_position/5.0, red_position/5.0)]
         self.motor_recommendations = [recommendation]
 
         confidence = red_detector.get_confidence()

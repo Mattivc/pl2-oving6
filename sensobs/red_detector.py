@@ -27,6 +27,10 @@ class RedDetector(Sensob):
         return im
 
     def find_mean_x_value(self, M):
+        """
+        range [-5, 5]
+        :return:
+        """
         shape = M.shape
         v = np.dot(M.T, np.ones((shape[0], 1)))
         n = len(v)
