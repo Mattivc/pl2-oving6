@@ -22,7 +22,7 @@ class AvoidCollisionBehaviour(behav.Behaviour):
         distance = ultra_sensob.get_value()  # distance cm
 
         if distance <= 5:
-            recommendation = [make_recommendation(0, 0)]
+            recommendation = [make_recommendation(-1, -1)]
             self.motor_recommendations = [recommendation]     #recommends the motors to stop
             self.set_match_degree(1.0)                        #sets a high match degree
         else:

@@ -72,4 +72,4 @@ class Behaviour(object):
         pass
 
     def __str__(self):
-        return str(type) + ", [weight: " + str(self.weight) + ", " + str(self.motor_recommendations) + "]"
+        return str(type(self)) + ", [weight: " + str(self.weight) + ", " + str(self.motor_recommendations) + "]"
