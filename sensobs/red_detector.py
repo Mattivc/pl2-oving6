@@ -48,7 +48,3 @@ class RedDetector(Sensob):
 
     def get_confidence(self):
         return self.confidence
-
-
-red = RedDetector(None)
-red.update()

@@ -4,6 +4,7 @@ import time
 from arbitrator import Arbitrator
 from motob import WheelMotob
 from motob import Motob
+import threading
 
 
 class Bbcon(object):
@@ -58,12 +59,28 @@ class Bbcon(object):
             True  => Keep running
         :return: bool
         """
+
+        forks = []
+
         # Update sensors
         for sensor in self.sensors:
-            sensor.update()
+            thread = threading.Thread(target=sensor.update)
+            forks.append(thread)
+            thread.start()
+
+        for fork in forks:
+            fork.join()
+
+        forks = []
         # Update sensobs
         for sensob in self.sensobs:
-            sensob.update()
+            thread = threading.Thread(target=sensob.update)
+            forks.append(thread)
+            thread.start()
+
+        for fork in forks:
+            fork.join()
+
         # Update behaviours
         for behav in self.active_behavs:
             behav.update()
