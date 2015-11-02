@@ -27,8 +27,11 @@ class FollowRedBehaviour(Behaviour):
 
         red_position = red_detector.get_red_position()
 
-        left = abs(1.0-red_position)/5.0
-        right = abs(red_position)/5.0
+        left = abs(1.0-red_position)/2.0
+        right = abs(red_position)/2.0
+
+        left = min(left, 1.0)
+        right = min(right, 1.0)
 
         print("Red position: "+str(red_position))
 
