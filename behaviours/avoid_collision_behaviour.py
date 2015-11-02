@@ -25,6 +25,7 @@ class AvoidCollisionBehaviour(behav.Behaviour):
             recommendation = [make_recommendation(0, 0)]
             self.motor_recommendations = [recommendation]     #recommends the motors to stop
             self.set_match_degree(1.0)                      #sets a high match degree
+        print(self)
 
     def consider_deactivation(self):
         # should ultrasonic sensor always be active?
@@ -32,3 +33,7 @@ class AvoidCollisionBehaviour(behav.Behaviour):
 
     def consider_activation(self):
         self.active_flag = True
+
+
+    def __str__(self):
+        return "AvoidCollisionBehaviour "+str(self.motor_recommendations) + ", active: " +str(self.active_flag) + ", weight: " + str(self.weight)
