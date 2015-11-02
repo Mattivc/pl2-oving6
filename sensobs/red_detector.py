@@ -9,9 +9,10 @@ class RedDetector(Sensob):
         self.camera = cameraSensor
         self.value = 0.0
         self.confidence = 0.0
+        self.active = False
 
     def _get_image(self):
-        return self.camera.update()
+        return self.camera.get_value()
 
     def _apply_image_transforms(self, image):
         """
@@ -27,6 +28,10 @@ class RedDetector(Sensob):
         return im
 
     def find_mean_x_value(self, M):
+        """
+        range [-5, 5]
+        :return:
+        """
         shape = M.shape
         v = np.dot(M.T, np.ones((shape[0], 1)))
         n = len(v)
@@ -35,6 +40,10 @@ class RedDetector(Sensob):
         return ((center_of_mass - n *0.5) / n) * 100
 
     def update(self):
+        self.active = not self.active
+        if not self.active:
+            return
+
         image = self._get_image()
 
         im = self._apply_image_transforms(image)

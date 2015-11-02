@@ -15,8 +15,10 @@ class Camera(sensor.Sensor):
         self.img_width = img_width
         self.img_height = img_height
         self.img_rot = img_rot
+        self.active = False
 
-    def get_value(self):  return self.value
+    def get_value(self):
+        return self.value
 
     def update(self):
         self.sensor_get_value()
@@ -33,16 +35,20 @@ class Camera(sensor.Sensor):
         #self.value = Image.open('image.png').convert('RGB')
 
         # Nei takk, keith.
+        self.active = not self.active
+        if not self.active:
+            return
+
         stream = io.BytesIO()
         with picamera.PiCamera() as camera:
-                camera.resolution = (self.img_width, self.img_height)
-                camera.rotation = self.img_rot
-                #camera.start_preview()
-                #time.sleep(0.1)
-                camera.capture(stream, format="jpeg")
+            camera.resolution = (self.img_width, self.img_height)
+            camera.rotation = self.img_rot
+            #camera.start_preview()
+            #time.sleep(0.1)
+            camera.capture(stream, format="jpeg")
         stream.seek(0)
         self.value = Image.open(stream)
 
-# Just testing the camera in python
+        # Just testing the camera in python
 
-# os.system('raspistill -t 1 -o image.png -w "' + str(200) + '" -h "' + str(200) + '" -rot "' + str(0) + '"')
+        # os.system('raspistill -t 1 -o image.png -w "' + str(200) + '" -h "' + str(200) + '" -rot "' + str(0) + '"')

@@ -17,7 +17,7 @@ class FollowRedBehaviour(Behaviour):
         self.active_flag = True
 
     def consider_deactivation(self):
-        self.active_flag = True
+        self.active_flag = False
 
     def sense_and_act(self):
         red_detector = self.sensobs[0]
@@ -27,7 +27,12 @@ class FollowRedBehaviour(Behaviour):
 
         red_position = red_detector.get_red_position()
 
-        recommendation = [make_recommendation(red_position, -red_position)]
+        left = abs(1.0-red_position)/5.0
+        right = abs(red_position)/5.0
+
+        print("Red position: "+str(red_position))
+
+        recommendation = [make_recommendation(left, right)]
         self.motor_recommendations = [recommendation]
 
         confidence = red_detector.get_confidence()
