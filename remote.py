@@ -3,30 +3,20 @@ from time import sleep
 
 mot = motors.Motors()
 
-duration = 0.1
+duration = 0.25
 speed = 0.8
-
-
-import curses
-stdscr = curses.initscr()
-curses.cbreak()
-stdscr.keypad(1)
-
-stdscr.addstr(0,10,"Hit 'q' to quit")
-stdscr.refresh()
 
 while True:
 
-    key = stdscr.getch()
+    move = input('Input: ')
 
-    if key == curses.KEY_UP:
-        mot.forward(speed, duration)
-    elif key == curses.KEY_DOWN:
-        mot.backward(speed, duration)
-    elif key == curses.KEY_LEFT:
-        mot.left(speed, duration)
-    elif key == curses.KEY_RIGHT:
-        mot.right(speed, duration)
-    sleep(duration*1.2)
-
-curses.endwin()
+    for c in move:
+        if c == 'w':
+            mot.forward(speed, duration)
+        elif c == 's':
+            mot.backward(speed, duration)
+        elif c == 'a':
+            mot.left(speed, duration)
+        elif c == 'd':
+            mot.right(speed, duration)
+        sleep(duration*1.2)
