@@ -8,7 +8,7 @@ from robot.motors import Motors
 from motob import WheelMotob
 from behaviours.avoid_collision_behaviour import AvoidCollisionBehaviour
 from sensobs.ultra_sensob import UltraSensob
-import sensors
+from sensors.ultrasonic import Ultrasonic
 
 if __name__ == '__main__':
     bb = Bbcon()
@@ -50,6 +50,18 @@ if __name__ == '__main__':
     bb.add_sensory_object(follow_red_sensob)
     bb.add_behaviour(follow_red_behaviour)
     bb.activate_behaviour(follow_red_behaviour)
+
+
+    # Ultrasonic
+
+    ultra_sonic_sensor = Ultrasonic()
+    collision_sensob = UltraSensob(ultra_sonic_sensor)
+    collision_behaviour = AvoidCollisionBehaviour(bb, collision_sensob)
+    bb.add_sensor(ultra_sonic_sensor)
+    bb.add_sensory_object(collision_sensob)
+    bb.add_behaviour(collision_behaviour)
+    bb.activate_behaviour(collision_behaviour)
+
 
     try:
         while bb.run_one_timestep():

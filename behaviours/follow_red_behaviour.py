@@ -30,5 +30,5 @@ class FollowRedBehaviour(Behaviour):
         recommendation = make_recommendation(red_position, -red_position)
         self.motor_recommendations = [recommendation]
 
-        # TODO: get match degree
-        self.set_match_degree(1.0)
+        confidence = red_detector.get_confidence()
+        self.set_match_degree(confidence)
