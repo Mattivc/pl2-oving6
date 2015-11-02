@@ -9,7 +9,7 @@ class RedDetector(Sensob):
         self.camera = cameraSensor
         self.value = 0.0
         self.confidence = 0.0
-        self.active = True
+        self.active = False
 
     def _get_image(self):
         return self.camera.get_value()
@@ -40,9 +40,9 @@ class RedDetector(Sensob):
         return ((center_of_mass - n *0.5) / n) * 100
 
     def update(self):
+        self.active = not self.active
         if not self.active:
             return
-        self.active = not self.active
 
         image = self._get_image()
 
