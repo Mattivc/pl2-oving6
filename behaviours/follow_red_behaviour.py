@@ -17,7 +17,7 @@ class FollowRedBehaviour(Behaviour):
         self.active_flag = True
 
     def consider_deactivation(self):
-        self.active_flag = True
+        self.active_flag = False
 
     def sense_and_act(self):
         red_detector = self.sensobs[0]
