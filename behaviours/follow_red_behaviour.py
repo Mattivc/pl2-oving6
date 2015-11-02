@@ -32,4 +32,5 @@ class FollowRedBehaviour(Behaviour):
         self.motor_recommendations = [recommendation]
 
         confidence = red_detector.get_confidence()
+        print("RED confidence: {}".format(confidence))
         self.set_match_degree(confidence)
