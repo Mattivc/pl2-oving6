@@ -38,7 +38,6 @@ class RedDetector(Sensob):
         image = self._get_image()
 
         im = self._apply_image_transforms(image)
-        im.show()
         data = np.asarray(im, dtype=np.uint8)
 
         self.value = self.find_mean_x_value(data)
