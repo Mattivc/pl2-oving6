@@ -71,7 +71,7 @@ class Bbcon(object):
         for fork in forks:
             fork.join()
 
-        forks.clear()
+        forks = []
         # Update sensobs
         for sensob in self.sensobs:
             thread = threading.Thread(target=sensob.update)
