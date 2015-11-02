@@ -61,6 +61,9 @@ class Bbcon(object):
         :return: bool
         """
 
+        print("="*50)
+        print()
+
         forks = []
 
         # Update sensors
