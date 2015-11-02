@@ -11,7 +11,7 @@ class RedDetector(Sensob):
         self.confidence = 0.0
 
     def _get_image(self):
-        return self.camera.update()
+        return self.camera.get_value()
 
     def _apply_image_transforms(self, image):
         """

@@ -16,7 +16,8 @@ class Camera(sensor.Sensor):
         self.img_height = img_height
         self.img_rot = img_rot
 
-    def get_value(self):  return self.value
+    def get_value(self):
+        return self.value
 
     def update(self):
         self.sensor_get_value()
