@@ -25,13 +25,17 @@ class FollowRedBehaviour(Behaviour):
         if not isinstance(red_detector, RedDetector):
             raise Exception("Invalid type red_detector: " + str(type(red_detector)))
 
-        red_position = red_detector.get_red_position() * 50.0
+        red_position = red_detector.get_red_position()
 
-        left = abs(1.0-red_position)/2.0
-        right = abs(red_position)/2.0
-
-        left = min(left, 1.0)
-        right = min(right, 1.0)
+        if red_position < -0.5:
+            left = 0.0
+            right = 1.0
+        elif red_position > 0.5:
+            left = 1.0
+            right = 0.0
+        else:
+            left = 0.8
+            right = 0.8
 
         print("\033[91mRed position: "+str(red_position)+ ", left: %.3f\tright:%.3f"%(left, right) +"\033[0m")
 
