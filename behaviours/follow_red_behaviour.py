@@ -27,15 +27,13 @@ class FollowRedBehaviour(Behaviour):
 
         red_position = red_detector.get_red_position()
 
-        if red_position < -1.0:
-            left = 1.0
-            right = 0.0
-        elif red_position > 1.0:
-            left = 0.0
-            right = 1.0
-        else:
-            left = 0.8
-            right = 0.8
+        red_position = red_detector.get_red_position()
+
+        left = abs(1.0-red_position)/2.0
+        right = abs(red_position)/2.0
+
+        left = min(left, 1.0)
+        right = min(right, 1.0)
 
         print("\033[91m Red position: "+str(red_position)+ ", dir:{} {}".format(left, right) +"\033[0m")
 
