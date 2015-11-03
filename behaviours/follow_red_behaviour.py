@@ -25,7 +25,7 @@ class FollowRedBehaviour(Behaviour):
         if not isinstance(red_detector, RedDetector):
             raise Exception("Invalid type red_detector: " + str(type(red_detector)))
 
-        red_position = red_detector.get_red_position() * 20.0
+        red_position = red_detector.get_red_position() * 50.0
 
         left = abs(1.0-red_position)/2.0
         right = abs(red_position)/2.0
@@ -38,6 +38,6 @@ class FollowRedBehaviour(Behaviour):
         recommendation = [make_recommendation(left, right)]
         self.motor_recommendations = [recommendation]
 
-        confidence = red_detector.get_confidence() * 0.8
+        confidence = red_detector.get_confidence() * 0.9
         print("RED confidence: {}".format(confidence))
         self.set_match_degree(confidence)
