@@ -27,10 +27,13 @@ class FollowRedBehaviour(Behaviour):
 
         red_position = red_detector.get_red_position() * 20.0
 
-        left = abs(1.0-red_position)/5.0
-        right = abs(red_position)/5.0
+        left = abs(1.0-red_position)/2.0
+        right = abs(red_position)/2.0
 
-        print("Red position: "+str(red_position))
+        left = min(left, 1.0)
+        right = min(right, 1.0)
+
+        print("\033[91mRed position: "+str(red_position)+ ", left: %.3f\tright:%.3f"%(left, right) +"\033[0m")
 
         recommendation = [make_recommendation(left, right)]
         self.motor_recommendations = [recommendation]

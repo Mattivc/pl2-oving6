@@ -31,6 +31,8 @@ class LineSensob(sensob.Sensob):
 
     def update(self):
         sensor_float_list = self.ir_sensor.get_value()                  # 6 floats
+        sensor_float_list[0:3] = [1.0, 1.0, 1.0] #Patch broken sensors...
+
         line_positions = list(map(self._is_black, sensor_float_list))   # 6 bool
         print("LineSensob: Sensor data: "+str(sensor_float_list))
 
