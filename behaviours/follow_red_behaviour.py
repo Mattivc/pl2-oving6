@@ -28,11 +28,11 @@ class FollowRedBehaviour(Behaviour):
         red_position = red_detector.get_red_position()
 
         if red_position < -1.0:
-            left = 0.0
-            right = 1.0
-        elif red_position > 1.0:
             left = 1.0
             right = 0.0
+        elif red_position > 1.0:
+            left = 0.0
+            right = 1.0
         else:
             left = 0.8
             right = 0.8
